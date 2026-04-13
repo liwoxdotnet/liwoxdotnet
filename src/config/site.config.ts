@@ -1,5 +1,3 @@
-import { SITE_URL, GOOGLE_SITE_VERIFICATION, BING_SITE_VERIFICATION } from 'astro:env/server';
-
 export interface SiteConfig {
   name: string;
   description: string;
@@ -24,72 +22,67 @@ export interface SiteConfig {
     google?: string;
     bing?: string;
   };
-  /** Path to author photo (relative to site root, e.g. '/avatar.jpg'). Used in Person schema. */
   authorImage?: string;
-  /**
-   * Set to false if your blog post images already match your theme color
-   * and you don't want the brand color overlay applied on top of them.
-   */
   blogImageOverlay?: boolean;
-  /**
-   * Branding configuration
-   * Logo files: Replace SVGs in src/assets/branding/
-   * Favicon: Replace in public/favicon.svg
-   */
   branding: {
-    /** Logo alt text for accessibility */
     logo: {
       alt: string;
-      /** Path to logo image for structured data (e.g. '/logo.png'). Add a PNG to public/ and set this. */
       imageUrl?: string;
     };
-    /** Favicon path (lives in public/) */
     favicon: {
       svg: string;
     };
-    /** Theme colors for manifest and browser UI */
     colors: {
-      /** Browser toolbar color (hex) */
       themeColor: string;
-      /** PWA splash screen background (hex) */
       backgroundColor: string;
     };
   };
 }
 
 const siteConfig: SiteConfig = {
-  name: 'Astro Rocket',
+  name: 'LiwoxDotNet',
   description:
-    'Astro Rocket — A production-ready Astro 6 starter with 12 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on.',
-  url: SITE_URL || 'https://astrorocket.dev',
+    'LiwoxDotNet — Building scalable apps, cloud systems, and automation solutions for modern businesses.',
+  
+  // ✅ FIXED: no astro env usage
+  url: 'https://liwox.net',
+
   ogImage: '/og-default.svg',
-  author: 'Hans Martens',
-  email: 'hello@hansmartens.dev',
+
+  author: 'LiwoxDotNet',
+  email: 'contact@liwox.net',
+
   address: {
     street: '',
-    city: 'Veghel',
+    city: 'Glasgow',
     state: '',
     zip: '',
-    country: 'the Netherlands',
+    country: 'United Kingdom',
   },
+
   socialLinks: [
-    'https://github.com/hansmartens68/Astro-Rocket',
-    'https://x.com/hansmartens_dev',
+    'https://github.com/liwoxdotnet',
     'https://www.linkedin.com',
   ],
+
   twitter: {
-    site: 'https://x.com/hansmartens_dev',
-    creator: '@hansmartens_dev',
+    site: 'https://x.com',
+    creator: '@liwox',
   },
+
+  // ✅ FIXED: remove env dependency
   verification: {
-    google: GOOGLE_SITE_VERIFICATION,
-    bing: BING_SITE_VERIFICATION,
+    google: '',
+    bing: '',
   },
+
   authorImage: '/avatar.svg',
+
   blogImageOverlay: true,
+
   branding: {
     logo: {
-      alt: 'Astro Rocket',
+      alt: 'LiwoxDotNet',
       imageUrl: '/favicon.svg',
     },
     favicon: {
