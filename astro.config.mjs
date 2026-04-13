@@ -6,9 +6,7 @@ import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  // ✅ CRITICAL FIX
-  output: 'static',
-
+  output: 'static', // ✅ force static mode
   site: 'https://liwox.net',
 
   integrations: [
@@ -21,4 +19,9 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+
+  // ✅ THIS IS THE KEY FIX
+  build: {
+    format: 'directory'
+  }
 });
