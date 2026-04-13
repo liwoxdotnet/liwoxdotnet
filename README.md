@@ -15,7 +15,7 @@
 
 ---
 
-## 🚀 Overview
+## 🚀 Overview.
 
 **LiwoxDotNet** is a digital services platform focused on building **high-performance web applications, cloud infrastructure, and automated systems**.
 
