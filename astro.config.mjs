@@ -6,7 +6,7 @@ import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  output: 'static', // ✅ FORCE STATIC
+  output: 'static', // ✅ VERY IMPORTANT
 
   site: 'https://liwox.net',
 
