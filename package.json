@@ -1,30 +1,26 @@
 {
-  "name": "astro-rocket",
+  "name": "liwoxdotnet",
   "version": "1.0.0",
-  "description": "Astro Rocket — A production-ready Astro 6 theme built on Tailwind CSS v4",
+  "description": "LiwoxDotNet — Digital services platform for building scalable apps, systems and cloud solutions",
   "type": "module",
-  "author": "Hans Martens",
+  "author": "LiwoxDotNet",
   "license": "MIT",
   "keywords": [
     "astro",
-    "astro-theme",
-    "theme",
+    "web-development",
+    "devops",
+    "cloud",
+    "automation",
     "tailwind",
-    "tailwindcss",
     "typescript",
-    "blog",
-    "starter",
-    "boilerplate",
-    "seo"
+    "portfolio",
+    "business"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/hansmartens68/astro-rocket"
+    "url": "https://github.com/liwoxdotnet/liwoxdotnet"
   },
-  "homepage": "https://github.com/hansmartens68/astro-rocket#readme",
-  "bugs": {
-    "url": "https://github.com/hansmartens68/astro-rocket/issues"
-  },
+  "homepage": "https://liwox.net",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -41,10 +37,8 @@
   "dependencies": {
     "@astrojs/cloudflare": "^13.1.8",
     "@astrojs/mdx": "5.0.0",
-    "@astrojs/netlify": "^7.0.2",
     "@astrojs/react": "5.0.0",
     "@astrojs/sitemap": "^3.7.1",
-    "@astrojs/vercel": "^10.0.0",
     "@fontsource-variable/jetbrains-mono": "^5.2.8",
     "@fontsource-variable/manrope": "^5.2.8",
     "@fontsource-variable/outfit": "^5.2.8",
