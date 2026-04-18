@@ -4,15 +4,13 @@ import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
-import vercel from '@astrojs/vercel';
-import netlify from '@astrojs/netlify';
-
-const isNetlify = process.env.DEPLOY_TARGET === 'netlify';
+import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
-  adapter: isNetlify ? netlify() : vercel(),
-  site: process.env.SITE_URL || 'https://example.com',
-
+  adapter: cloudflare({
+    mode: 'directory',
+  }),
+  site: 'https://liwox.net',
   env: {
     schema: {
       SITE_URL: envField.string({ context: 'server', access: 'public', optional: true }),
@@ -28,31 +26,26 @@ export default defineConfig({
       PUBLIC_PRIVACY_POLICY_URL: envField.string({ context: 'client', access: 'public', optional: true, default: '' }),
     },
   },
-
   image: {
     layout: 'constrained',
   },
-
   integrations: [
     react(),
     mdx(),
     sitemap(),
     icon(),
   ],
-
   vite: {
     plugins: [tailwindcss()],
   },
-
   security: {
     checkOrigin: true,
   },
-
   markdown: {
     shikiConfig: {
       theme: 'github-dark',
       wrap: true,
     },
   },
-
+  output: 'hybrid', // Required for API routes
 });
