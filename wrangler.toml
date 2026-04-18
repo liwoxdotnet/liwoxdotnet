@@ -3,6 +3,3 @@
 name = "liwox"
 compatibility_date = "2026-01-31"
 pages_build_output_dir = "dist"
-
-[build]
-command = "pnpm build"
