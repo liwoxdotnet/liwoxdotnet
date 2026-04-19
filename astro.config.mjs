@@ -4,13 +4,13 @@ import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
-import vercel from '@astrojs/vercel';
-import netlify from '@astrojs/netlify';
-
-const isNetlify = process.env.DEPLOY_TARGET === 'netlify';
+import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
-  adapter: isNetlify ? netlify() : vercel(),
+  output: 'hybrid',
+  adapter: cloudflare({
+    imageService: 'passthrough',
+  }),
   site: process.env.SITE_URL || 'https://example.com',
 
   env: {

@@ -28,7 +28,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "wrangler pages dev ./dist",
     "check": "astro check",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -36,14 +36,14 @@
     "format:check": "prettier --check .",
     "validate": "pnpm lint && pnpm check && pnpm build",
     "test": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "deploy": "astro build && wrangler pages deploy ./dist"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.5.0",
     "@astrojs/mdx": "5.0.0",
-    "@astrojs/netlify": "^7.0.2",
     "@astrojs/react": "5.0.0",
     "@astrojs/sitemap": "^3.7.1",
-    "@astrojs/vercel": "^10.0.0",
     "@fontsource-variable/jetbrains-mono": "^5.2.8",
     "@fontsource-variable/manrope": "^5.2.8",
     "@fontsource-variable/outfit": "^5.2.8",
@@ -81,6 +81,7 @@
     "typescript": "^5.7.0",
     "typescript-eslint": "^8.18.0",
     "vitest": "^3.2.0",
+    "wrangler": "^4.0.0",
     "zod": "^4.0.0"
   },
   "pnpm": {
