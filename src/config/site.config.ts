@@ -58,28 +58,32 @@ export interface SiteConfig {
 }
 
 const siteConfig: SiteConfig = {
-  name: 'Astro Rocket',
+  name: 'LiwoxDotNet',
   description:
-    'Astro Rocket — A production-ready Astro 6 starter with 12 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on.',
-  url: SITE_URL || 'https://astrorocket.dev',
+    'LiwoxDotNet helps businesses design, build, and scale modern digital systems using DevOps, cloud infrastructure, and clean engineering practices.',
+  url: SITE_URL || 'https://liwox.net',
   ogImage: '/og-default.svg',
-  author: 'Hans Martens',
-  email: 'hello@hansmartens.dev',
+  author: 'Armstrong Uzoagwa',
+  email: 'admin@liwox.net',
   address: {
     street: '',
-    city: 'Veghel',
-    state: '',
+    city: 'Southport',
+    state: 'England',
     zip: '',
-    country: 'the Netherlands',
+    country: 'United Kingdom',
   },
   socialLinks: [
-    'https://github.com/hansmartens68/Astro-Rocket',
-    'https://x.com/hansmartens_dev',
-    'https://www.linkedin.com',
+    'https://github.com/ArmstrongLiwox',
+    'https://www.linkedin.com/in/armstrong-uzoagwa',
+    'https://www.facebook.com/armstrong.uzoagwa',
+    'https://twitter.com/ArmStrongUzo',
+    'https://www.instagram.com/liwoxdotnet',
+    'https://www.youtube.com/@liwoxdotnet',
+    'https://www.pinterest.com/liwoxdotnet',
   ],
   twitter: {
-    site: 'https://x.com/hansmartens_dev',
-    creator: '@hansmartens_dev',
+    site: 'https://twitter.com/ArmStrongUzo',
+    creator: '@ArmStrongUzo',
   },
   verification: {
     google: GOOGLE_SITE_VERIFICATION,
@@ -89,7 +93,7 @@ const siteConfig: SiteConfig = {
   blogImageOverlay: true,
   branding: {
     logo: {
-      alt: 'Astro Rocket',
+      alt: 'LiwoxDotNet',
       imageUrl: '/favicon.svg',
     },
     favicon: {
