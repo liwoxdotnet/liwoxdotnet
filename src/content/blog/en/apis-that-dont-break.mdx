@@ -1,0 +1,133 @@
+---
+title: "How to Build APIs That Don't Break in Production"
+description: "Most API failures are predictable and preventable. Here's how we design, validate, and harden server-side endpoints that hold up under real production conditions."
+publishedAt: 2026-02-20
+author: "Armstrong Uzoagwa"
+tags: ["api", "web-development", "devops", "security", "tutorial"]
+featured: false
+locale: en
+---
+
+An API that works in development is a starting point, not a result. The conditions in development — predictable inputs, single users, no network latency, no malicious requests — bear almost no resemblance to production. Building for production means anticipating the conditions that development hides.
+
+These are the practices we apply to every API we build at LiwoxDotNet.
+
+## Validate everything at the boundary
+
+Never trust input. Not from forms, not from other services, not from authenticated users. Every piece of data that enters your API should be validated against a schema before it touches any business logic or database.
+
+We use Zod for TypeScript validation — it provides runtime schema validation with excellent TypeScript inference:
+
+```typescript
+import { z } from 'zod';
+
+const createOrderSchema = z.object({
+  customerId: z.string().uuid(),
+  items: z.array(z.object({
+    productId: z.string().uuid(),
+    quantity: z.number().int().min(1).max(100),
+  })).min(1).max(50),
+  notes: z.string().max(500).optional(),
+});
+
+export const POST: APIRoute = async ({ request }) => {
+  const body = await request.json();
+  const result = createOrderSchema.safeParse(body);
+
+  if (!result.success) {
+    return new Response(
+      JSON.stringify({ error: result.error.flatten() }),
+      { status: 400 }
+    );
+  }
+
+  // result.data is fully typed and validated
+  const order = await createOrder(result.data);
+  return new Response(JSON.stringify(order), { status: 201 });
+};
+```
+
+Validation failures return 400 with clear error messages. They never reach the database.
+
+## Return consistent error shapes
+
+Inconsistent error responses are one of the most common sources of frontend bugs. If your API returns `{ error: "message" }` sometimes and `{ errors: ["message"] }` other times, clients have to handle both cases everywhere.
+
+Define an error response shape and use it everywhere:
+
+```typescript
+type ApiError = {
+  success: false;
+  error: {
+    code: string;
+    message: string;
+    fields?: Record<string, string[]>;
+  };
+};
+```
+
+Clients can rely on `response.error.message` always being present. Debugging is faster. Integration is simpler.
+
+## Handle failures explicitly
+
+Every external call — database queries, third-party APIs, file system operations — can fail. Handling failures explicitly, rather than letting exceptions propagate, gives you control over what the client receives.
+
+```typescript
+try {
+  const result = await externalService.call(data);
+  return new Response(JSON.stringify({ success: true, data: result }));
+} catch (error) {
+  // Log with context for debugging
+  console.error('External service failed', { error, data });
+
+  // Return a safe, generic error to the client
+  return new Response(
+    JSON.stringify({ success: false, error: { code: 'SERVICE_UNAVAILABLE', message: 'Service temporarily unavailable' }}),
+    { status: 503 }
+  );
+}
+```
+
+The client gets a useful error. The logs have the detail needed for debugging. The internal error is never exposed directly.
+
+## Rate limit before you need to
+
+Rate limiting protects your API from abuse, accidental hammering from buggy clients, and the kind of traffic spike that takes down an unprotected endpoint.
+
+Cloudflare Workers has rate limiting built in. For other environments, a token bucket implementation using Redis is standard:
+
+```typescript
+const key = `ratelimit:${clientIp}`;
+const current = await redis.incr(key);
+if (current === 1) await redis.expire(key, 60); // 60 second window
+
+if (current > 100) { // 100 requests per minute
+  return new Response(null, {
+    status: 429,
+    headers: { 'Retry-After': '60' }
+  });
+}
+```
+
+Add this to public endpoints before launch, not after the first abuse incident.
+
+## Test your error paths
+
+Most API tests cover the happy path — valid input, successful response. The paths that matter most in production are the failure paths — invalid input, service unavailable, database timeout, malformed request.
+
+Write tests for the cases that will actually cause problems:
+
+```typescript
+it('returns 400 for missing required fields', async () => {
+  const response = await POST({ body: {} });
+  expect(response.status).toBe(400);
+});
+
+it('returns 503 when external service fails', async () => {
+  mockExternalService.mockRejectedValue(new Error('timeout'));
+  const response = await POST({ body: validData });
+  expect(response.status).toBe(503);
+});
+```
+
+An API that handles its failure cases gracefully is an API that stays running when things go wrong in production.

@@ -1,0 +1,57 @@
+---
+title: "The True Cost of Bad Infrastructure"
+description: "Cutting corners on infrastructure looks cheap until you calculate the real cost — downtime, developer time, security incidents, and the rebuild that becomes inevitable."
+publishedAt: 2026-01-22
+author: "Armstrong Uzoagwa"
+tags: ["devops", "cloud", "infrastructure", "engineering", "business"]
+featured: false
+locale: en
+---
+
+The conversation usually starts with budget.
+
+A business needs a cloud environment. Someone estimates the cost of doing it properly — Terraform, proper networking, monitoring, CI/CD, security hardening. The number is higher than expected. Someone else points out that you could just spin up a server manually and deploy directly to it. It works. It's cheaper. Why not?
+
+Six months later, the answer becomes clear.
+
+## What "cheaper" actually costs
+
+**Developer time investigating incidents.** When infrastructure is not properly monitored and documented, every incident requires significant investigation time. Where is the problem? What changed recently? How does this system actually work? A senior developer spending two hours on an infrastructure incident is not free — it is expensive, and it is a recurring cost.
+
+**Deployment failures and rollbacks.** Manual deployments fail. When they fail in production, someone has to fix them, usually under pressure, often late in the evening. The time cost is real. The stress cost is real. The customer impact cost is real.
+
+**Security vulnerabilities.** Infrastructure that isn't patched systematically gets breached. The cost of a security incident — investigation, remediation, customer notification, reputational damage — routinely runs into tens of thousands of pounds even for small businesses. The cost of patching properly is a fraction of that.
+
+**The inevitable rebuild.** Systems built without proper architecture reach a ceiling. The moment the business tries to scale — more users, more traffic, more data — the system breaks down. The rebuild is not optional. It is a certainty. And rebuilding under pressure, with accumulated technical debt, costs far more than building correctly the first time.
+
+## The calculation nobody does upfront
+
+Suppose building the infrastructure properly costs £5,000 more upfront than the quick-and-dirty alternative.
+
+Over eighteen months:
+- 3 major incidents × 8 hours of senior developer time = £3,600
+- 5 deployment failures × 3 hours each = £1,500
+- 1 security incident = £10,000 minimum
+- Rebuild cost when system can't scale = £15,000+
+
+Total: £30,100 in avoidable costs, against £5,000 of upfront investment.
+
+This is not a hypothetical. It is the pattern we see consistently in businesses that bring us in to fix infrastructure that was built without proper engineering.
+
+## What proper infrastructure actually requires
+
+The foundations are not complicated:
+
+- **Infrastructure as Code** — everything defined in Terraform, nothing manual
+- **Automated deployments** — CI/CD pipelines from code to production
+- **Monitoring and alerting** — visibility into what the system is doing before problems become incidents
+- **Environment separation** — development, staging, and production are isolated
+- **Documented runbooks** — written procedures for common operational tasks
+
+None of these are exotic. They are standard practice in engineering organisations that operate production systems reliably. The cost of implementing them properly is front-loaded. The return is compounded over years.
+
+## The question worth asking before you build
+
+Before any infrastructure decision, ask: what is the cost of this decision over three years, not over three months?
+
+The answer almost always points toward building properly. Not because it's the idealistic choice — because it's the economically rational one.

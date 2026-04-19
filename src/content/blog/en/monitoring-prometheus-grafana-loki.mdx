@@ -1,0 +1,91 @@
+---
+title: "Monitoring That Actually Works: Prometheus, Grafana, and Loki"
+description: "How we build observability stacks that give real visibility into production systems — metrics, dashboards, log aggregation, and alerting that fires before users notice."
+publishedAt: 2026-01-08
+author: "Armstrong Uzoagwa"
+tags: ["monitoring", "prometheus", "grafana", "devops", "observability"]
+featured: true
+locale: en
+---
+
+Monitoring is one of those things every team knows they need and most teams get wrong.
+
+The typical failure mode looks like this: something breaks in production, users report it, the team investigates, and everyone agrees they need better monitoring. Monitoring gets added as an afterthought — a few dashboards, a couple of alerts. Three months later, something else breaks. Nobody saw it coming. The cycle repeats.
+
+The problem is not the tools. Prometheus, Grafana, and Loki are excellent. The problem is how monitoring is treated — as something you add after the system is built, rather than something built into the system from the start.
+
+## The three pillars of observability
+
+Observability is built on three things: metrics, logs, and traces. Each answers a different question.
+
+**Metrics** answer "is the system healthy right now?" — CPU usage, memory consumption, request rates, error rates, response times. Prometheus collects these as time-series data, enabling both current dashboards and historical trends.
+
+**Logs** answer "what happened?" — the detailed record of events, errors, and state changes. Loki aggregates logs from all services into a single queryable system without requiring expensive indexing.
+
+**Traces** answer "where did this request go?" — the journey of a single request through multiple services. Useful for complex distributed systems where a slow response might originate anywhere in the chain.
+
+For most production systems, metrics and logs cover 90% of operational needs.
+
+## Prometheus: metrics collection
+
+Prometheus scrapes metrics from HTTP endpoints exposed by your applications and infrastructure. Every Kubernetes node, every pod, every database — anything that exposes a `/metrics` endpoint gets scraped automatically.
+
+```yaml
+scrape_configs:
+  - job_name: 'kubernetes-pods'
+    kubernetes_sd_configs:
+      - role: pod
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+```
+
+The Prometheus Query Language (PromQL) lets you query this data precisely:
+
+```promql
+# Error rate over the last 5 minutes
+rate(http_requests_total{status=~"5.."}[5m])
+
+# 95th percentile response time
+histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))
+```
+
+## Grafana: dashboards and alerting
+
+Grafana connects to Prometheus (and Loki) and turns raw data into dashboards. A well-designed dashboard shows you the state of a system at a glance — you should be able to look at it for ten seconds and know whether anything is wrong.
+
+More importantly, Grafana handles alerting. Alerts should be configured before incidents occur, not after. At minimum:
+
+- Error rate exceeds 1% for more than 2 minutes
+- Response time p95 exceeds 500ms
+- Pod restart count increases
+- Memory usage exceeds 85% on any node
+
+Each alert should have a clear runbook: what it means, how to investigate, and how to resolve it. An alert without a runbook is noise.
+
+## Loki: log aggregation
+
+Loki stores logs indexed by labels rather than full-text content. This makes it dramatically cheaper than Elasticsearch while remaining fast enough for most operational use cases.
+
+Deploying Promtail as a DaemonSet on every Kubernetes node ships logs from all containers to Loki automatically:
+
+```yaml
+clients:
+  - url: http://loki:3100/loki/api/v1/push
+
+scrape_configs:
+  - job_name: kubernetes-pods
+    kubernetes_sd_configs:
+      - role: pod
+```
+
+In Grafana, you can query logs with LogQL alongside your Prometheus metrics — correlating a spike in errors with the log entries that explain it.
+
+## The result we see in practice
+
+Production systems with a properly configured Prometheus + Grafana + Loki stack behave differently. Problems are caught by alerts before users notice. Incident investigations take minutes instead of hours because the data is available immediately. Teams feel confident deploying because they know they'll see problems quickly.
+
+In our own projects, this observability stack has contributed to a 40% reduction in mean time to recovery. The monitoring doesn't prevent every incident — nothing does. But it compresses the time between "something went wrong" and "we know what it is and we're fixing it" to minutes.
+
+That compression is the whole point.

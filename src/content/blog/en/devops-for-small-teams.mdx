@@ -1,0 +1,92 @@
+---
+title: "DevOps for Small Teams: Getting the Basics Right"
+description: "You don't need a platform team or a dedicated SRE to benefit from DevOps. Here are the fundamentals that every small team can implement and that make the biggest difference."
+publishedAt: 2026-02-06
+author: "Armstrong Uzoagwa"
+tags: ["devops", "cloud", "automation", "github-actions", "tutorial"]
+featured: false
+locale: en
+---
+
+DevOps has a reputation for being complex, expensive, and requiring a dedicated team to implement. That reputation is partly deserved for large organisations with hundreds of services. For small teams — two to ten developers, a handful of services — the fundamentals are accessible, affordable, and impactful.
+
+This post covers the DevOps basics that every small team should have. Not the full enterprise platform engineering stack — the foundations that deliver 80% of the benefit.
+
+## Version control everything
+
+This should go without saying in 2026, but it still needs saying: everything that defines your system should be in version control.
+
+Not just application code. Infrastructure code (Terraform, Ansible). Configuration files. Deployment scripts. Environment variable templates (not the values — the templates). Documentation.
+
+If it's not in version control, it doesn't exist in a reliable way.
+
+## Automate your deployments
+
+Manual deployments are the single highest-leverage thing to automate for a small team. The investment is a few hours to set up a GitHub Actions workflow. The return is every future deployment being faster, more consistent, and lower risk.
+
+A minimal GitHub Actions deployment workflow:
+
+```yaml
+name: Deploy
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npm run deploy
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+```
+
+Tests run automatically. If they pass, the deployment happens. If they fail, nothing ships. This is the entire value proposition of CI/CD, and it requires no dedicated infrastructure.
+
+## Use managed services, not self-managed servers
+
+Small teams should not be managing their own servers. The operational overhead — patching, monitoring, backups, scaling — is significant and does not scale with a small team.
+
+Use managed services instead:
+- **Database**: RDS, PlanetScale, Supabase — not self-managed Postgres
+- **Hosting**: Cloudflare Pages, Vercel, Railway — not self-managed nginx
+- **Object storage**: S3, R2 — not self-managed file servers
+
+The cost difference is real but smaller than the cost of managing infrastructure manually with a small team.
+
+## Add monitoring before you need it
+
+The instinct is to add monitoring after the first incident. Resist this. Add it before.
+
+The minimum viable monitoring stack for a small team:
+- **Uptime monitoring**: UptimeRobot or Better Uptime — free, alerts you when your site is down
+- **Error tracking**: Sentry — catches and groups application errors automatically
+- **Log access**: Whatever your hosting provider offers — Cloudflare, Vercel, and Railway all have log access built in
+
+This takes an afternoon to set up. It means you know about problems before your users do.
+
+## Keep environments separate
+
+Development, staging, and production should be isolated. This means separate databases, separate environment variables, and separate deployments. It does not need to be complicated.
+
+At minimum: production runs on different resources than development. Configuration that differs between environments lives in environment variables, not in code. Staging exists and receives every deployment before production does.
+
+## Document the things that will be forgotten
+
+When something breaks at 11pm, the last thing you want to be doing is trying to remember how the deployment process works. Write runbooks — short documents that describe:
+
+- How to deploy
+- How to roll back
+- How to restart a service
+- What to check first when something is slow
+
+A runbook doesn't need to be long. It needs to be accurate and findable.
+
+## The summary
+
+For a small team, the DevOps fundamentals are: version control everything, automate deployments, use managed services, add monitoring early, separate environments, and document operational procedures.
+
+None of these require a platform team. All of them pay back their investment within weeks. Start with one and add the rest over time.
