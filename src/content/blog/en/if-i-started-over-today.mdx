@@ -1,0 +1,79 @@
+---
+title: "If I Had to Start Over Today, This Is How I'd Build Everything"
+description: "My current stack, workflow, and thinking — if I were starting a new digital platform from scratch today, what I'd choose and why."
+publishedAt: 2026-03-19
+author: "Armstrong Uzoagwa"
+tags: ["devops", "cloudflare", "astro", "terraform", "engineering"]
+featured: true
+locale: en
+---
+
+I get asked regularly what stack I'd recommend for a new project. The question is usually framed as a technology question — which framework, which cloud provider, which database. But the more useful version of the question is: if you had to start a digital platform from scratch tomorrow, what would the whole system look like?
+
+Here is my honest answer.
+
+## The frontend: Astro
+
+For any project where the primary job is delivering content — a marketing site, a product platform, a blog, a portfolio — I would use Astro without hesitation.
+
+The reason is simple: Astro sends zero JavaScript to the browser by default. Pages are static HTML. They load instantly. Lighthouse 95+ is the starting point, not the aspiration. When I need interactivity — a form, a dropdown, a chart — I add a React or Svelte component as an island. The JavaScript cost is scoped to exactly where it's needed.
+
+Next.js ships a JavaScript runtime to every page. For content-heavy sites, that is overhead without return. For highly interactive applications, Next.js makes sense. For content platforms, Astro is correct.
+
+## The hosting: Cloudflare Pages
+
+Every project would go on Cloudflare Pages. Static assets served from 300+ edge locations globally. Cloudflare Workers for API routes — no cold starts, edge-native. Automatic CI/CD from GitHub. SSL included. The free tier covers most projects through launch and early growth.
+
+I've deployed to Vercel, Netlify, AWS Amplify, and Cloudflare. Cloudflare gives me the most for the least operational overhead. The global edge distribution is not a premium feature — it's the default.
+
+## The backend: depends on complexity
+
+For simple API routes — contact forms, newsletter signups, webhooks — Cloudflare Workers integrated with Pages. No separate backend infrastructure.
+
+For more complex backends — user authentication, complex business logic, database-heavy workloads — I'd reach for a containerised service on AWS ECS or a set of Lambda functions behind API Gateway, depending on the workload pattern.
+
+For anything requiring sophisticated orchestration — multiple services, complex deployment strategies, autoscaling — Kubernetes on AWS EKS. Not because it's fashionable, but because it is the right tool for that level of complexity and I know it well.
+
+## The database: right-sized for the requirement
+
+Cloudflare D1 for Cloudflare-native projects with moderate data requirements. SQLite at the edge, integrated with Workers, no external database to manage.
+
+RDS PostgreSQL for heavier relational workloads. Managed service, automated backups, read replicas when needed.
+
+I would not self-manage a database server unless there was a compelling reason. The operational overhead of patching, backing up, and monitoring a self-managed database is not worth it when managed alternatives exist.
+
+## The infrastructure: Terraform
+
+Every cloud resource defined in Terraform. No manual console changes, ever. Everything versioned, everything reproducible. `terraform apply` creates the environment. `terraform destroy` removes it. The state is the documentation.
+
+This discipline is non-negotiable for me. The first time you need to rebuild an environment and all you have is a screenshot of the AWS console, you understand why.
+
+## The deployment pipeline: GitHub Actions
+
+CI/CD from the first commit. The pipeline lints, type-checks, tests, builds, and deploys automatically. Broken code does not reach production — automated tests stop it.
+
+For most projects, GitHub Actions is sufficient. For more complex pipelines with many environments and services, Jenkins or GitLab CI. The tool matters less than the discipline: automate the path from code to production and never deploy manually.
+
+## The observability: Prometheus, Grafana, Loki
+
+For any project with meaningful infrastructure — Kubernetes, multiple services, production workloads — the full Prometheus + Grafana + Loki stack. Metrics, dashboards, log aggregation, alerting.
+
+For simpler projects: Cloudflare Analytics for traffic and performance, Sentry for error tracking, UptimeRobot for availability. Set up before launch, not after the first incident.
+
+## The one thing I'd do differently from my earlier projects
+
+Add monitoring before features.
+
+Every time I've added observability late in a project, I've paid for it during debugging. Every time I've built the monitoring layer first, I've had visibility that made everything else faster.
+
+The first thing I set up now is the deployment pipeline and the monitoring. Then I build features with confidence — I can see what they're doing in production from the moment they ship.
+
+## The honest summary
+
+The stack is not exotic. Astro, Cloudflare, Terraform, GitHub Actions, Prometheus. These are proven tools chosen for reliability and operational simplicity. The goal is not to use the most interesting technology — it is to build systems that work in production without heroics.
+
+That is what I'd choose. That is what I build with.
+
+---
+
+If you're starting a new project and want a clear-eyed view of what you should build it on, [get in touch](/contact). I'll tell you what I'd actually use for your specific situation.

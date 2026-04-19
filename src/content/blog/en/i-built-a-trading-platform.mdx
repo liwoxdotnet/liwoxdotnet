@@ -1,0 +1,65 @@
+---
+title: "I Built a Trading Platform — Here's What I Learned"
+description: "The technical challenges, architecture decisions, and hard-won lessons from building Forex Delight — a cloud-powered automated trading and growth platform."
+publishedAt: 2026-02-12
+author: "Armstrong Uzoagwa"
+tags: ["cloudflare", "devops", "architecture", "api", "platform"]
+featured: true
+locale: en
+---
+
+Forex Delight is the most technically complex project I've built to date. A cloud-powered trading ecosystem that connects live MetaTrader 5 accounts to a web platform, processes real-time trade data, and provides analytics dashboards to traders managing their growth.
+
+Building it taught me things that theoretical knowledge doesn't. This post covers the real challenges, the decisions I made, and what I'd do differently.
+
+## The core challenge: real-time financial data
+
+The hardest part of building a trading platform is not the UI. It is the data pipeline.
+
+Trade data in MetaTrader 5 lives inside the terminal — a Windows desktop application running a trading account. Getting that data out of the terminal and into a web platform requires bridging two completely different worlds: a legacy desktop application with its own scripting language (MQL5) and a modern cloud API.
+
+The solution was a custom Expert Advisor (EA) — a program written in MQL5 that runs inside MT5 and pushes trade events to a Cloudflare Workers API endpoint in real time.
+
+```mql5
+// Simplified EA logic — fires on every new trade event
+void OnTradeTransaction(const MqlTradeTransaction &trans, ...) {
+    if (trans.type == TRADE_TRANSACTION_DEAL_ADD) {
+        string payload = BuildTradePayload(trans);
+        SendToAPI(payload, "https://api.forex-delight.com/trades");
+    }
+}
+```
+
+When a trade opens or closes, the EA fires, builds a JSON payload, and sends it to the Workers endpoint. The response is typically under 500ms — fast enough for real-time tracking without blocking the terminal.
+
+## Why Cloudflare Workers for the backend
+
+The choice of Cloudflare Workers for the API layer was deliberate. Trading data is latency-sensitive — delays in recording trades create inconsistencies between what MT5 shows and what the dashboard shows. Users notice immediately.
+
+Workers run at the edge — in the Cloudflare location closest to wherever the EA is sending data from. There are no cold starts. Response times are consistently low. For a UK-based trader, requests hit a London edge node. For a Nigerian trader, Lagos. The infrastructure adapts geographically without configuration.
+
+## The database decision
+
+Cloudflare D1 — serverless SQLite at the edge — was the right choice for trade storage. The data model is straightforwardly relational: accounts, trades, performance metrics. SQLite handles this cleanly. D1 integrates directly with Workers, removing the latency of an external database call.
+
+The trade-off: D1 is not suited for high-write workloads or complex analytical queries. For a platform with hundreds of concurrent traders executing automated strategies, a more powerful database (CockroachDB, PlanetScale) would be the next step.
+
+## What I'd do differently
+
+**Build the data schema more carefully upfront.** The trade data model evolved three times during development as I understood the MT5 output format better. Each schema change required migration work that could have been avoided with more careful design at the start.
+
+**Add rate limiting from day one.** The EA can fire frequently during active trading sessions. Without rate limiting on the Workers endpoint, a misbehaving EA could generate thousands of requests per minute. I added rate limiting late in development — it should have been there from the first deployed endpoint.
+
+**Build the monitoring before the features.** I added Cloudflare analytics and custom metrics logging partway through development. I should have set this up on the first day. Debugging data pipeline issues without visibility into what the Workers were receiving and rejecting was unnecessarily difficult.
+
+## What it proved
+
+Cloudflare Workers is production-ready for real-time data applications. The latency is genuinely low. The integration with D1 is clean. The deployment pipeline (GitHub → Cloudflare Pages/Workers) is fast and reliable.
+
+MQL5 EA development is a niche skill, but it is not as opaque as it appears. The language is C-like and the documentation is comprehensive. The hard part is understanding the MT5 event model — once that clicks, the development is straightforward.
+
+Financial platforms are buildable by a solo engineer with the right architecture decisions. Forex Delight is not a team effort. It is a single engineer choosing the right tools and building systematically.
+
+---
+
+If you're working on a fintech platform or a system that needs real-time data integration, [let's talk](/contact). I'd rather you learn from my mistakes than repeat them.

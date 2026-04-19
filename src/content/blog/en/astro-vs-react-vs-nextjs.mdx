@@ -1,0 +1,77 @@
+---
+title: "Astro vs React vs Next.js — What Should You Use?"
+description: "A straightforward breakdown of when to use Astro, React, or Next.js — the trade-offs, the use cases, and why I reach for Astro most of the time."
+publishedAt: 2025-12-01
+author: "Armstrong Uzoagwa"
+tags: ["astro", "react", "nextjs", "web-development", "tutorial"]
+featured: false
+locale: en
+---
+
+The most common technical question I get from clients is some version of: "What should we build this in?"
+
+When the project involves a frontend, the answer usually comes down to three options: Astro, React, or Next.js. This post explains the differences plainly and gives you a clear framework for which to use when.
+
+## The short answer
+
+- **Astro** — for content-driven websites and platforms where performance matters
+- **React** — for highly interactive applications where complex UI state is the main challenge
+- **Next.js** — for full-stack React applications that need server-side rendering and a unified framework
+
+Now the longer version.
+
+## Astro
+
+Astro's core idea is simple: send as little JavaScript to the browser as possible. Pages render to HTML at build time or on the server. JavaScript only ships when you add an explicitly interactive component — a form, a dropdown, a chart. Everything else is static HTML and CSS.
+
+For content-driven sites — blogs, marketing pages, portfolios, documentation, landing pages — this is exactly right. The content is the product. JavaScript is overhead. Astro removes the overhead.
+
+**Performance**: Excellent by default. Lighthouse 95+ is routine on a well-built Astro site.
+**Learning curve**: Low. You write HTML, CSS, and JavaScript in `.astro` files. The concepts are familiar.
+**Use for**: Websites, content platforms, marketing sites, portfolios, any project where the primary job is delivering content.
+
+**Don't use for**: Real-time dashboards, collaborative tools, highly interactive applications with complex interdependent state.
+
+## React
+
+React is a UI library for building interactive interfaces. It is not a framework — it does not make decisions about routing, data fetching, or deployment. You compose it with other tools to build a complete application.
+
+React's strength is its component model for complex, interactive UIs. When you have dozens of components sharing state, responding to user actions in real time, and updating independently — React's model handles this elegantly.
+
+**Performance**: Variable. React ships JavaScript, and JavaScript has a cost. Performance requires deliberate effort — code splitting, memoisation, lazy loading. It doesn't come free.
+**Learning curve**: Moderate to high. The component model, hooks, and state management require investment to use well.
+**Use for**: Complex interactive applications — dashboards, real-time interfaces, collaborative tools, anything with significant client-side state.
+
+**Don't use for**: Content sites where interactivity is minimal. You're paying the JavaScript cost for little return.
+
+## Next.js
+
+Next.js is React with opinions. It adds file-based routing, server-side rendering, static generation, API routes, and deployment optimisation — all integrated and configured by default.
+
+If you're building a React application and you want a complete framework rather than assembling one from parts, Next.js is the answer. It handles most of the architectural decisions React leaves open.
+
+**Performance**: Good, with care. Next.js has the tools for excellent performance, but you have to use them correctly.
+**Learning curve**: Moderate. If you know React, Next.js concepts are accessible. The full feature set is large.
+**Use for**: Full-stack React applications, e-commerce platforms, SaaS products, anything that needs server-side rendering with React's interactivity.
+
+**Don't use for**: Content sites that don't need React's complexity. Astro is simpler and faster.
+
+## How I choose
+
+The decision tree I actually use:
+
+**Is the primary job delivering content — articles, pages, marketing?** → Astro
+
+**Is there significant client-side interactivity and shared UI state?** → React (or Next.js if you need SSR)
+
+**Do you need SSR with React's component model and a complete framework?** → Next.js
+
+**Are you deploying to Cloudflare?** → Astro integrates with Cloudflare Pages natively. Next.js on Cloudflare has limitations.
+
+I reach for Astro most of the time because most projects I work on are content-driven platforms where performance is important and React's complexity is unnecessary overhead. When I'm building something genuinely interactive — a trading dashboard, a data visualisation tool — React is the right call.
+
+The tool should match the problem, not the other way around.
+
+---
+
+Not sure which framework fits your project? [Get in touch](/contact) and I'll give you a straight answer.

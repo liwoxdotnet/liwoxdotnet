@@ -1,0 +1,68 @@
+---
+title: "Building a Full Stack Platform Without Overengineering"
+description: "The trap of overengineering is as dangerous as underbuilding. Here's how I choose the right tools for the job and avoid unnecessary complexity in every platform I build."
+publishedAt: 2025-10-28
+author: "Armstrong Uzoagwa"
+tags: ["engineering", "devops", "architecture", "cloudflare", "astro"]
+featured: false
+locale: en
+---
+
+There is a failure mode in software engineering that gets less attention than it deserves: overengineering.
+
+Underengineering — building systems too simple to handle real requirements — gets talked about constantly. Overengineering — building systems too complex for the problem they solve — is just as damaging and far more common among engineers who know what they're doing.
+
+A microservices architecture for a business with three developers. Kubernetes for a single-service application. An event-driven message queue for a system that processes ten orders per day. These are real decisions I've seen in real projects. They create complexity, operational overhead, and cost without delivering equivalent value.
+
+The discipline I try to apply is simple: use the minimum complexity that solves the actual problem.
+
+## How I make tool decisions
+
+Every tool selection starts with the same question: what problem does this solve, and is that problem real for this project?
+
+**Cloudflare Pages vs a VPS**: If the project is a content-driven website or a platform with server-side API routes, Cloudflare Pages is almost always correct. Edge-native deployment, global CDN, automatic SSL, CI/CD built in, and a free tier that handles serious traffic. A VPS adds operational overhead — server management, patching, uptime monitoring — without commensurate benefit for most web projects.
+
+**Astro vs React/Next.js**: If the project is primarily content — blog posts, marketing pages, landing pages, project showcases — Astro is correct. Zero JavaScript by default, static output, excellent performance. If the project is a highly interactive application — a dashboard, a real-time tool, a complex form workflow — React or Next.js is correct. The distinction is content vs application. Using a full React framework for a content site is overengineering.
+
+**Kubernetes vs managed containers vs serverless**: Kubernetes is the right choice for complex, multi-service applications that need sophisticated orchestration, autoscaling, and deployment strategies. For a platform running two or three services, managed containers (AWS ECS, Cloud Run) or serverless functions are simpler, cheaper, and easier to operate. I reach for Kubernetes when the problem genuinely requires it.
+
+**PostgreSQL vs SQLite vs D1**: For a Cloudflare-native project with moderate data requirements, Cloudflare D1 (serverless SQLite) is the right choice — no separate database to manage, integrated with Workers, free tier is generous. For more complex relational data requirements, RDS PostgreSQL. The choice depends on the actual data model and query patterns, not on what sounds most serious.
+
+## The simplicity principle in practice
+
+The way I test whether a technical decision is justified: can I explain why this complexity is necessary, in specific terms, for this project?
+
+If the answer is "because it's the right pattern" or "because it scales well" or "because other large companies use it" — that's not a justification. That's cargo-culting.
+
+If the answer is "because we need to handle X concurrent jobs independently" or "because we have three teams deploying independently and need isolation" — that's a real reason.
+
+Complexity should always be justified by a specific requirement. When it isn't, simplicity wins.
+
+## What this looks like on a real project
+
+For the LiwoxDotNet platform itself:
+
+- **Astro** for the frontend — content-driven site, static output is correct
+- **Cloudflare Pages** for hosting — no servers to manage, global distribution, automatic deployments
+- **Cloudflare Workers** for API routes — contact form and newsletter run at the edge
+- **Resend** for email — simple API, no email server to manage
+
+The stack is not exciting. It is correct for the problem. Every piece earns its place.
+
+For Forex Delight — a more complex platform with real-time data integration, user dashboards, and automated execution:
+
+- **Cloudflare Workers** for the API layer — edge-native, low latency for financial data
+- **Cloudflare D1** for structured trade data — relational storage without a separate database
+- **Custom MQL5 EA** for trading execution — domain-specific requirement that has no simpler solution
+
+The additional complexity is justified by specific requirements. Real-time financial data demands low latency. Automated trading execution requires a domain-specific tool.
+
+## The honest conclusion
+
+The best engineers I know make boring technology choices. They pick tools they understand deeply, that their team can operate without heroics, and that solve the actual problem without solving imaginary future problems.
+
+The goal is not to build the most sophisticated system. The goal is to build the right system.
+
+---
+
+If you're trying to figure out the right stack for your project — without overbuilding it — [let's talk](/contact).

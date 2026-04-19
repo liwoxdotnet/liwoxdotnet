@@ -1,0 +1,64 @@
+---
+title: "What Makes a Website Fast in 2026?"
+description: "Performance, Core Web Vitals, and real user experience — what speed actually means in 2026 and the specific decisions that determine whether your site is fast or slow."
+publishedAt: 2026-01-28
+author: "Armstrong Uzoagwa"
+tags: ["performance", "web-development", "astro", "cloudflare", "seo"]
+featured: false
+locale: en
+---
+
+Website speed is not one thing. It is a collection of measurements that together describe what a user experiences when they load your site. Getting it right requires understanding what is actually being measured — and making the technical decisions that move those numbers.
+
+## Why speed matters more than ever in 2026
+
+Google uses Core Web Vitals as a ranking signal. A slow site ranks lower than a fast one with equivalent content — a direct business impact.
+
+More immediately: users leave slow sites. Not grudgingly — they leave before the page has finished loading. On mobile, where network conditions are variable and patience is limited, the impact of every extra second of load time is measurable in bounce rates.
+
+Speed is not a technical nice-to-have. It is a business requirement.
+
+## What Core Web Vitals actually measure
+
+Google's Core Web Vitals are three metrics that measure real user experience:
+
+**Largest Contentful Paint (LCP)** — how long until the main content of the page is visible. Target: under 2.5 seconds. This is the metric most affected by server response time, JavaScript blocking rendering, and image optimisation.
+
+**Cumulative Layout Shift (CLS)** — how much the page layout moves around as it loads. Target: under 0.1. Layout shifts happen when images load without defined dimensions, when fonts swap in, or when content inserts dynamically above existing content.
+
+**Interaction to Next Paint (INP)** — how quickly the page responds to user interactions. Target: under 200ms. This replaced First Input Delay in 2024 and measures responsiveness throughout the full page lifetime.
+
+## The decisions that determine your speed
+
+**How much JavaScript you ship.** JavaScript is the single largest performance cost in most web applications. Every kilobyte of JavaScript the browser downloads has to be parsed and executed before it can do anything — blocking the render. The less JavaScript you ship, the faster your pages.
+
+This is why I use Astro for content-driven projects. Astro sends zero JavaScript by default. Pages render to static HTML. The difference compared to a React application is not marginal — it is dramatic.
+
+**Where your content is served from.** A user in Manchester loading your site from a server in Virginia adds 100-200ms of network latency before a single byte arrives. Content served from Cloudflare's global edge network arrives from the nearest location — often under 20ms.
+
+**Whether your images are optimised.** Images are the largest assets on most pages. Unoptimised images — wrong format, wrong size, no lazy loading — are the most common cause of poor LCP scores. Modern image formats (WebP, AVIF) at the correct resolution, loaded lazily below the fold, make a measurable difference.
+
+**Whether rendering blocks on JavaScript.** JavaScript in the `<head>` without `async` or `defer` blocks the browser from rendering anything until that script has downloaded, parsed, and executed. This is a common and fixable cause of slow LCP.
+
+**Whether fonts are handled correctly.** Custom web fonts add a request and a render delay. `font-display: swap` lets the browser render with a fallback font immediately while the custom font loads, preventing invisible text.
+
+## What good looks like
+
+A well-built site in 2026 achieves:
+- Lighthouse scores of 95+ across Performance, Accessibility, Best Practices, and SEO
+- LCP under 1.5 seconds from most regions
+- CLS under 0.05
+- INP under 100ms
+- Zero render-blocking resources
+
+These are not aspirational numbers. They are routine on sites built with the right stack and the right decisions. The LiwoxDotNet platform scores 95+ across all categories — not because of optimisation effort, but because the architectural choices (Astro, Cloudflare Pages, static output) make performance the default.
+
+## The practical takeaway
+
+Speed is a consequence of design decisions — not something you optimise after the fact. The framework you choose, the hosting platform, how you handle images and fonts, how much JavaScript you ship — these decisions made at the start determine your performance ceiling.
+
+Choose correctly at the start and performance is free. Choose poorly and optimisation is a continuous battle against the architecture.
+
+---
+
+If your site is slow and you're not sure why, [get in touch](/contact). I'll take a look and tell you what's actually causing it.
