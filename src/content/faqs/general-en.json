@@ -1,7 +1,44 @@
-{
-  "question": "What is Astro Rocket?",
-  "answer": "Astro Rocket is a free, open-source website theme built on Astro 6 and Tailwind CSS v4. It includes a full component library, a blog with MDX support, built-in dark mode, SEO, and everything else you need to ship a fast, modern website without starting from scratch.",
-  "category": "general",
-  "order": 1,
-  "locale": "en"
-}
+[
+  {
+    "question": "What does LiwoxDotNet actually do?",
+    "answer": "LiwoxDotNet is a UK-based digital engineering practice. We help businesses design, build, and scale modern digital systems — from websites and dashboards to full cloud-based platforms. Our core services are web and application development, cloud infrastructure and DevOps, and automation and workflow optimisation.",
+    "category": "general",
+    "order": 1,
+    "locale": "en"
+  },
+  {
+    "question": "Who do you typically work with?",
+    "answer": "We work with UK-based businesses of all sizes — from early-stage startups that need to launch their first product to established companies that need to scale or modernise their existing infrastructure. If you need something built properly, we're a good fit.",
+    "category": "general",
+    "order": 2,
+    "locale": "en"
+  },
+  {
+    "question": "How does a project typically start?",
+    "answer": "It starts with a conversation. Get in touch via the contact form and tell us what you're trying to build or solve. We'll discuss your goals, constraints, and timeline — and propose the right approach before any work begins. No obligation, no jargon.",
+    "category": "general",
+    "order": 3,
+    "locale": "en"
+  },
+  {
+    "question": "What cloud platforms do you work with?",
+    "answer": "We have deep experience with AWS and GCP. We work with Kubernetes, Terraform, Ansible, Docker, and modern CI/CD tooling including Jenkins, GitHub Actions, and Harness. We build infrastructure that is reliable, reproducible, and straightforward to maintain.",
+    "category": "general",
+    "order": 4,
+    "locale": "en"
+  },
+  {
+    "question": "Do you only do DevOps, or do you build front-end too?",
+    "answer": "Both. We build full digital systems — from the front-end interface down to the infrastructure it runs on. Whether you need a web application, a cloud platform, or both, we can handle the full stack without needing to coordinate multiple agencies.",
+    "category": "general",
+    "order": 5,
+    "locale": "en"
+  },
+  {
+    "question": "How long does a typical project take?",
+    "answer": "It depends on the scope. A straightforward web project can be live in a few weeks. A full cloud platform or infrastructure migration takes longer and is planned carefully in stages. We're always transparent about timelines from the start, and we don't overpromise.",
+    "category": "general",
+    "order": 6,
+    "locale": "en"
+  }
+]
