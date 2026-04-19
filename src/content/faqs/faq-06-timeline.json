@@ -1,0 +1,7 @@
+{
+  "question": "How long does a typical project take?",
+  "answer": "It depends on the scope. A straightforward web project can be live in a few weeks. A full cloud platform or infrastructure migration takes longer and is planned carefully in stages. We're always transparent about timelines from the start, and we don't overpromise.",
+  "category": "general",
+  "order": 6,
+  "locale": "en"
+}

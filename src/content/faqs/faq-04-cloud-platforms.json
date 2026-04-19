@@ -1,0 +1,7 @@
+{
+  "question": "What cloud platforms do you work with?",
+  "answer": "We have deep experience with AWS and GCP. We work with Kubernetes, Terraform, Ansible, Docker, and modern CI/CD tooling including Jenkins, GitHub Actions, and Harness. We build infrastructure that is reliable, reproducible, and straightforward to maintain.",
+  "category": "general",
+  "order": 4,
+  "locale": "en"
+}
