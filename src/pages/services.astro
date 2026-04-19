@@ -1,0 +1,410 @@
+---
+/**
+ * Services page
+ * URL: /services
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
+import { Hero } from '@/components/hero';
+import siteConfig from '@/config/site.config';
+---
+<PageLayout
+  title={`Services — ${siteConfig.name}`}
+  description="LiwoxDotNet offers web and application development, cloud infrastructure and DevOps, and automation services. End-to-end digital systems built for production."
+>
+  <Hero layout="centered" size="sm">
+    <Badge slot="badge" variant="brand" pill>
+      <Icon name="layers" size="sm" />
+      Services
+    </Badge>
+    <h1 slot="title">
+      <span class="text-foreground [-webkit-text-fill-color:currentColor]">What We</span>
+      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]"> Build</span>
+    </h1>
+    <p slot="description">
+      End-to-end digital systems — from the first conversation to production deployment. Built fast, built properly, and built to scale.
+    </p>
+  </Hero>
+
+  <!-- Core Services -->
+  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-16">
+
+      <!-- Service 1: Web & App Development -->
+      <div class="grid gap-10 lg:grid-cols-2 items-center" data-reveal>
+        <div class="flex flex-col gap-6">
+          <div class="flex flex-col gap-4">
+            <Badge variant="brand" pill class="self-start">01</Badge>
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="code" size="md" />
+              </div>
+              <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground">
+                Web & Application Development
+              </h2>
+            </div>
+          </div>
+          <p class="text-lg text-foreground-muted leading-relaxed">
+            Clean, modern websites and web applications built with the right tools for the job. Fast by design, accessible by default, and structured to grow from day one.
+          </p>
+          <p class="text-lg text-foreground-muted leading-relaxed">
+            Whether you need a marketing platform, a SaaS frontend, a dashboard, or a full-stack web application — I build it with the same engineering discipline I apply to infrastructure: no shortcuts, no technical debt baked in.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <Badge variant="brand" size="sm">Astro</Badge>
+            <Badge variant="brand" size="sm">React</Badge>
+            <Badge variant="brand" size="sm">TypeScript</Badge>
+            <Badge variant="brand" size="sm">Tailwind CSS</Badge>
+            <Badge variant="brand" size="sm">Cloudflare Pages</Badge>
+            <Badge variant="brand" size="sm">REST APIs</Badge>
+          </div>
+          <Button href="/contact" class="self-start">
+            Start a project
+            <Icon name="arrow-right" size="sm" />
+          </Button>
+        </div>
+        <div class="flex flex-col gap-4" data-reveal data-reveal-delay="1">
+          <Card hover>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="zap" size="sm" />
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-foreground">Performance First</h3>
+                <p class="text-sm text-foreground-muted mt-1 leading-relaxed">Lighthouse 95+ across all categories. Fast delivery via Cloudflare's global edge network.</p>
+              </div>
+            </div>
+          </Card>
+          <Card hover>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="search" size="sm" />
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-foreground">SEO Built In</h3>
+                <p class="text-sm text-foreground-muted mt-1 leading-relaxed">Meta tags, JSON-LD structured data, sitemap, Open Graph — not bolted on after launch.</p>
+              </div>
+            </div>
+          </Card>
+          <Card hover>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="git-branch" size="sm" />
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-foreground">CI/CD from Day One</h3>
+                <p class="text-sm text-foreground-muted mt-1 leading-relaxed">Automated deployment pipelines configured before features are built — not added at the end.</p>
+              </div>
+            </div>
+          </Card>
+          <Card hover>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="mail" size="sm" />
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-foreground">Contact & Newsletter Systems</h3>
+                <p class="text-sm text-foreground-muted mt-1 leading-relaxed">Server-side validated forms, transactional email via Resend, and audience management.</p>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </div>
+
+      <div class="border-t border-border" />
+
+      <!-- Service 2: Cloud Infrastructure & DevOps -->
+      <div class="grid gap-10 lg:grid-cols-2 items-center" data-reveal>
+        <div class="flex flex-col gap-4 order-2 lg:order-1" data-reveal data-reveal-delay="1">
+          <Card hover>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="shield-check" size="sm" />
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-foreground">99.9% Uptime</h3>
+                <p class="text-sm text-foreground-muted mt-1 leading-relaxed">Production Kubernetes workloads with automated health checks, failover, and disaster recovery.</p>
+              </div>
+            </div>
+          </Card>
+          <Card hover>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="layers" size="sm" />
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-foreground">Infrastructure as Code</h3>
+                <p class="text-sm text-foreground-muted mt-1 leading-relaxed">Every resource defined in Terraform — versioned, reproducible, and documented by default.</p>
+              </div>
+            </div>
+          </Card>
+          <Card hover>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="activity" size="sm" />
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-foreground">Observability Stack</h3>
+                <p class="text-sm text-foreground-muted mt-1 leading-relaxed">Prometheus, Grafana, and Loki — metrics, dashboards, log aggregation, and alerting.</p>
+              </div>
+            </div>
+          </Card>
+          <Card hover>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="trending-down" size="sm" />
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-foreground">Cost Optimisation</h3>
+                <p class="text-sm text-foreground-muted mt-1 leading-relaxed">Right-sizing, lifecycle policies, Savings Plans — up to 20% infrastructure cost reduction.</p>
+              </div>
+            </div>
+          </Card>
+        </div>
+        <div class="flex flex-col gap-6 order-1 lg:order-2">
+          <div class="flex flex-col gap-4">
+            <Badge variant="brand" pill class="self-start">02</Badge>
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="cloud" size="md" />
+              </div>
+              <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground">
+                Cloud Infrastructure & DevOps
+              </h2>
+            </div>
+          </div>
+          <p class="text-lg text-foreground-muted leading-relaxed">
+            Reliable, secure cloud environments on AWS and GCP — built with Terraform, managed with Kubernetes, and operated with full observability. Infrastructure that you can trust in production.
+          </p>
+          <p class="text-lg text-foreground-muted leading-relaxed">
+            I design and build the infrastructure layer that your applications run on — from VPCs and security groups to EKS clusters and CI/CD pipelines. Everything as code, everything reproducible, everything monitored.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <Badge variant="brand" size="sm">AWS</Badge>
+            <Badge variant="brand" size="sm">GCP</Badge>
+            <Badge variant="brand" size="sm">Kubernetes</Badge>
+            <Badge variant="brand" size="sm">Terraform</Badge>
+            <Badge variant="brand" size="sm">Ansible</Badge>
+            <Badge variant="brand" size="sm">Prometheus</Badge>
+            <Badge variant="brand" size="sm">Grafana</Badge>
+          </div>
+          <Button href="/contact" class="self-start">
+            Discuss your infrastructure
+            <Icon name="arrow-right" size="sm" />
+          </Button>
+        </div>
+      </div>
+
+      <div class="border-t border-border" />
+
+      <!-- Service 3: Automation & Workflow Optimisation -->
+      <div class="grid gap-10 lg:grid-cols-2 items-center" data-reveal>
+        <div class="flex flex-col gap-6">
+          <div class="flex flex-col gap-4">
+            <Badge variant="brand" pill class="self-start">03</Badge>
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="zap" size="md" />
+              </div>
+              <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground">
+                Automation & Workflow Optimisation
+              </h2>
+            </div>
+          </div>
+          <p class="text-lg text-foreground-muted leading-relaxed">
+            Manual processes are slow, inconsistent, and expensive. I identify the workflows that are consuming your team's time and replace them with automated systems that run reliably without human intervention.
+          </p>
+          <p class="text-lg text-foreground-muted leading-relaxed">
+            From deployment pipelines to data pipelines, from infrastructure provisioning to operational runbooks — the goal is the same: systems that work while your team focuses on what matters.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <Badge variant="brand" size="sm">Python</Badge>
+            <Badge variant="brand" size="sm">Bash</Badge>
+            <Badge variant="brand" size="sm">Jenkins</Badge>
+            <Badge variant="brand" size="sm">GitHub Actions</Badge>
+            <Badge variant="brand" size="sm">Harness</Badge>
+            <Badge variant="brand" size="sm">Ansible</Badge>
+          </div>
+          <Button href="/contact" class="self-start">
+            Automate your workflows
+            <Icon name="arrow-right" size="sm" />
+          </Button>
+        </div>
+        <div class="flex flex-col gap-4" data-reveal data-reveal-delay="1">
+          <Card hover>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="git-merge" size="sm" />
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-foreground">CI/CD Pipeline Design</h3>
+                <p class="text-sm text-foreground-muted mt-1 leading-relaxed">End-to-end automated pipelines — lint, test, scan, build, deploy. No manual steps, no surprises.</p>
+              </div>
+            </div>
+          </Card>
+          <Card hover>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="database" size="sm" />
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-foreground">Data Pipeline Automation</h3>
+                <p class="text-sm text-foreground-muted mt-1 leading-relaxed">ETL pipelines, data ingestion, transformation, and structured output — automated end to end.</p>
+              </div>
+            </div>
+          </Card>
+          <Card hover>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="server" size="sm" />
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-foreground">Infrastructure Provisioning</h3>
+                <p class="text-sm text-foreground-muted mt-1 leading-relaxed">Terraform and Ansible automation cutting provisioning time by up to 85%.</p>
+              </div>
+            </div>
+          </Card>
+          <Card hover>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="refresh-cw" size="sm" />
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-foreground">Operational Runbooks</h3>
+                <p class="text-sm text-foreground-muted mt-1 leading-relaxed">Documented, tested procedures for common operational tasks — so incidents are resolved fast.</p>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="py-[var(--space-section-md)] bg-background border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mb-10 text-center flex flex-col items-center gap-4" data-reveal>
+        <Badge variant="brand" pill>By the Numbers</Badge>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+          Results We've Delivered
+        </h2>
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
+          Real outcomes from real projects — not estimates, not aspirations.
+        </p>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4" data-reveal data-reveal-delay="1">
+        <Card variant="elevated" padding="lg" class="text-center">
+          <p class="text-4xl font-display font-bold text-brand-500 mb-2">99.9%</p>
+          <p class="text-sm font-semibold text-foreground">Production Uptime</p>
+          <p class="text-xs text-foreground-muted mt-1">Kubernetes workloads on AWS EKS</p>
+        </Card>
+        <Card variant="elevated" padding="lg" class="text-center">
+          <p class="text-4xl font-display font-bold text-brand-500 mb-2">85%</p>
+          <p class="text-sm font-semibold text-foreground">Faster Provisioning</p>
+          <p class="text-xs text-foreground-muted mt-1">Via Terraform and Ansible automation</p>
+        </Card>
+        <Card variant="elevated" padding="lg" class="text-center">
+          <p class="text-4xl font-display font-bold text-brand-500 mb-2">40%</p>
+          <p class="text-sm font-semibold text-foreground">MTTR Reduction</p>
+          <p class="text-xs text-foreground-muted mt-1">Through observability and alerting</p>
+        </Card>
+        <Card variant="elevated" padding="lg" class="text-center">
+          <p class="text-4xl font-display font-bold text-brand-500 mb-2">20%</p>
+          <p class="text-sm font-semibold text-foreground">Cost Reduction</p>
+          <p class="text-xs text-foreground-muted mt-1">AWS infrastructure optimisation</p>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mb-10 text-center flex flex-col items-center gap-4" data-reveal>
+        <Badge variant="brand" pill>The Process</Badge>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+          How Every Project Works
+        </h2>
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
+          From the first conversation to the final deployment — no surprises, no hidden steps.
+        </p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4" data-reveal data-reveal-delay="1">
+        <Card hover padding="lg">
+          <div class="flex flex-col gap-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+              <Icon name="message-circle" size="sm" />
+            </div>
+            <div>
+              <p class="text-xs font-bold text-foreground-muted mb-1">Step 01</p>
+              <h3 class="text-base font-semibold text-foreground mb-2">Conversation</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed">We talk through what you're building, what problem it solves, and what success looks like. No obligation, no jargon.</p>
+            </div>
+          </div>
+        </Card>
+        <Card hover padding="lg">
+          <div class="flex flex-col gap-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+              <Icon name="file-text" size="sm" />
+            </div>
+            <div>
+              <p class="text-xs font-bold text-foreground-muted mb-1">Step 02</p>
+              <h3 class="text-base font-semibold text-foreground mb-2">Proposal</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed">A clear proposal: what I'll build, how, what it costs, and when it's done. No vague estimates.</p>
+            </div>
+          </div>
+        </Card>
+        <Card hover padding="lg">
+          <div class="flex flex-col gap-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+              <Icon name="code-2" size="sm" />
+            </div>
+            <div>
+              <p class="text-xs font-bold text-foreground-muted mb-1">Step 03</p>
+              <h3 class="text-base font-semibold text-foreground mb-2">Build</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed">Systematic delivery with regular check-ins. You see progress. Questions get asked early, not at the end.</p>
+            </div>
+          </div>
+        </Card>
+        <Card hover padding="lg">
+          <div class="flex flex-col gap-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+              <Icon name="rocket" size="sm" />
+            </div>
+            <div>
+              <p class="text-xs font-bold text-foreground-muted mb-1">Step 04</p>
+              <h3 class="text-base font-semibold text-foreground mb-2">Delivery</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed">A live, deployed system with documentation, runbooks, and a handover session — not just working code.</p>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-[var(--space-section-md)] bg-background">
+    <div class="mx-auto max-w-2xl px-6 text-center" data-reveal>
+      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
+        Ready to start?
+      </h2>
+      <p class="text-lg text-foreground-muted mb-8 text-balance">
+        Tell me what you're building and I'll tell you honestly what it takes. No obligation, no sales pitch — just a straight conversation.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button size="lg" href="/contact">
+          Get in touch
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+        <Button size="lg" variant="outline" href="/projects">
+          See our work
+        </Button>
+      </div>
+    </div>
+  </section>
+
+</PageLayout>
