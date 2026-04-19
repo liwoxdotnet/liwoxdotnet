@@ -1,0 +1,43 @@
+---
+title: "Cloud Infrastructure Automation"
+description: "Enterprise-grade CI/CD pipelines, Kubernetes deployments, and infrastructure as code — delivering secure, scalable production environments on AWS."
+tags: ["Terraform", "Kubernetes", "AWS EKS", "Jenkins", "GitLab CI"]
+featured: true
+order: 4
+year: 2024
+role: "Senior Platform Engineer"
+services: ["Cloud Infrastructure", "DevOps", "Automation"]
+---
+
+## The Brief
+
+A growing technology organisation needed to replace manual, error-prone infrastructure processes with automated, repeatable pipelines. Deployments were slow, environment consistency was unreliable, and the team had no visibility into infrastructure state.
+
+The brief was clear: build infrastructure that deploys itself, monitors itself, and scales without manual intervention.
+
+## What We Built
+
+A complete DevOps platform built on AWS, covering everything from infrastructure provisioning to production monitoring.
+
+- **Infrastructure as Code** — full AWS environment defined in Terraform, versioned in Git
+- **Kubernetes on EKS** — containerised workloads with automated health checks, autoscaling, and rolling deployments
+- **CI/CD pipelines** — Jenkins and GitLab CI with integrated SAST/DAST security scanning
+- **Observability stack** — Prometheus, Grafana, and Loki for metrics, dashboards, and log aggregation
+- **Ansible automation** — configuration management eliminating manual server setup
+- **Disaster recovery** — automated backups, failover procedures, and recovery runbooks
+
+## Technical Decisions
+
+**Terraform for all infrastructure.** Every AWS resource is defined in code, stored in version control, and deployed through a pipeline. No manual console changes, no configuration drift.
+
+**Helm for Kubernetes deployments.** Helm charts provide reusable, parameterised deployment templates across development, staging, and production — with one command to promote between environments.
+
+**Prometheus + Grafana + Loki as the observability layer.** The full metrics, alerting, and logging stack gives complete visibility without depending on expensive managed monitoring services.
+
+## Results
+
+- 85% reduction in infrastructure provisioning time
+- 40% reduction in mean time to recovery (MTTR)
+- 35% improvement in deployment velocity
+- 99.9% uptime maintained across production workloads
+- Zero configuration drift across all managed environments

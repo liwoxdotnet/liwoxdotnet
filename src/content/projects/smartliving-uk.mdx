@@ -1,0 +1,41 @@
+---
+title: "SmartLiving UK"
+description: "A scalable content platform delivering practical guides, tools, and digital resources to simplify everyday life in the UK — built for SEO, growth, and monetisation."
+tags: ["Astro", "Cloudflare Pages", "SEO", "Content Systems"]
+featured: false
+order: 7
+year: 2025
+role: "Developer & Platform Architect"
+services: ["Web Development", "Content Systems", "SEO"]
+---
+
+## The Brief
+
+Content-driven platforms live or die on discoverability. SmartLiving UK needed a foundation that could publish structured content at scale, rank well in search, and grow its audience without hitting performance or cost ceilings.
+
+The brief covered three things: a fast, SEO-optimised publishing system; a clean, accessible reading experience; and an architecture that could support monetisation as traffic grew.
+
+## What We Built
+
+SmartLiving UK is a content platform built on Astro's Content Collections API, deployed on Cloudflare Pages, and optimised for organic search from the ground up.
+
+- **Astro Content Collections** — type-safe, structured blog and resource publishing
+- **SEO layer** — meta tags, JSON-LD, sitemap, Open Graph, and robots.txt on every page
+- **Fast content delivery** — static pages prerendered at build time, served from Cloudflare's edge
+- **Utility tools section** — interactive tools built as Astro islands alongside editorial content
+- **Monetisation-ready architecture** — ad placement zones, affiliate link structure, and newsletter integration
+
+## Technical Decisions
+
+**Static generation for content pages.** Blog posts and guides don't change on every request. Prerendering them at build time gives instant load times and dramatically reduces server costs — critical for a content platform where page count grows continuously.
+
+**Structured content with Zod validation.** Every piece of content is validated against a schema at build time. Broken or incomplete content fails the build rather than publishing silently — maintaining quality as the content library scales.
+
+**SEO from day one, not bolted on.** Structured data, canonical URLs, sitemap generation, and Open Graph metadata are built into the platform architecture — not added as afterthoughts.
+
+## Results
+
+- Lighthouse scores of 95+ across all categories
+- Fully automated SEO metadata on every published page
+- Architecture supporting hundreds of content pages without performance degradation
+- Monetisation infrastructure in place from launch

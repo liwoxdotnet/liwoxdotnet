@@ -1,0 +1,39 @@
+---
+title: "DesignSync"
+description: "A Git-backed collaboration platform that brings version control and structured workflows to construction design teams — without the technical complexity."
+tags: ["GitHub API", "Cloudflare", "Google Drive API", "Custom UI"]
+featured: false
+order: 3
+year: 2026
+role: "Platform Architect & Developer"
+services: ["Platform Development", "API Integration", "Workflow Automation"]
+---
+
+## The Brief
+
+Construction design teams work with large drawing sets that go through dozens of revisions. Without version control, teams lose track of what changed, when, and why — leading to costly errors on site.
+
+The challenge was bringing the discipline of Git-based version control to teams of architects and engineers who have no interest in learning Git.
+
+## What We Built
+
+DesignSync abstracts Git entirely behind a clean, domain-specific interface. Teams upload drawings and documents through a familiar UI — the backend handles versioning, history, and storage automatically using the GitHub API and Google Drive.
+
+- **File versioning** — every upload creates a new version, with full history and diff tracking
+- **Google Drive integration** — files stored where teams already work
+- **GitHub API backend** — version control logic without exposing Git to users
+- **Team dashboards** — project status, revision history, and activity tracking
+- **Role-based access** — architects, engineers, and clients each see what they need
+
+## Technical Decisions
+
+**GitHub as a version control backend, not a developer tool.** The GitHub API gives us a robust, battle-tested versioning system. DesignSync exposes none of Git's complexity — users see file versions and history, not commits and branches.
+
+**Google Drive for file storage.** Design teams already store files in Drive. Integrating with it rather than replacing it reduces friction and avoids the adoption barrier of a new storage system.
+
+## Results
+
+- Version history and rollback available on every design file
+- Zero Git knowledge required from end users
+- Revision tracking reducing miscommunication between design and site teams
+- Structured workflow from upload to approval to archive

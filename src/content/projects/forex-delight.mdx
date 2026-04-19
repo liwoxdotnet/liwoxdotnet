@@ -1,0 +1,42 @@
+---
+title: "Forex Delight"
+description: "A cloud-powered automated trading platform combining expert advisor automation, real-time trade tracking, and user dashboards into a unified SaaS ecosystem."
+url: "https://liwox.net"
+tags: ["Cloudflare Workers", "D1", "Astro", "MQL5", "APIs"]
+featured: true
+order: 1
+year: 2025
+role: "Full Stack Engineer & Platform Architect"
+services: ["Platform Development", "Cloud Architecture", "Trading Automation"]
+---
+
+## The Brief
+
+Traders managing small capital need discipline and automation to grow consistently. The challenge was building a platform that connected live trading accounts to a structured backend — handling real-time data, automated execution, and performance analytics in a single system.
+
+The goal was a production-ready SaaS architecture that could scale as the user base grew, without requiring a rebuild at every stage.
+
+## What We Built
+
+Forex Delight is a cloud-powered trading ecosystem built on Cloudflare's edge infrastructure. It integrates directly with MetaTrader 5 via a custom Expert Advisor (EA) written in MQL5, pushing trade data to a Cloudflare Workers backend in real time.
+
+- **Custom EA (MQL5)** — automates trade execution based on structured risk management rules
+- **Real-time data pipeline** — MT5 → Cloudflare Workers → D1 database
+- **User dashboards** — performance analytics, trade history, and account metrics
+- **SaaS-ready architecture** — multi-user support with account isolation
+- **API layer** — clean REST endpoints for frontend consumption
+
+## Technical Decisions
+
+**Cloudflare Workers over traditional servers.** Trading data is latency-sensitive. Workers run at the edge, close to users, with no cold starts — the right call for real-time financial data.
+
+**D1 for structured trade data.** Cloudflare's serverless SQLite database gave us relational storage without managing a separate database server. Simple, cost-effective, and tightly integrated with Workers.
+
+**MQL5 EA for execution.** Rather than routing orders through a third-party API, a custom EA running inside MT5 gives full control over execution logic and risk parameters.
+
+## Results
+
+- Real-time trade data flowing from MT5 to the cloud in under 500ms
+- Automated execution reducing manual intervention to zero
+- Scalable architecture ready for multi-user SaaS deployment
+- Full performance analytics available on every dashboard

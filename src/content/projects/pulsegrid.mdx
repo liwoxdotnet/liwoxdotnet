@@ -1,0 +1,42 @@
+---
+title: "PulseGrid"
+description: "A cloud-based healthcare data pipeline and analytics platform — ingesting, processing, and structuring health data at scale using automated ETL and DevOps principles."
+tags: ["AWS", "Python", "Terraform", "Kubernetes", "Data Pipelines"]
+featured: false
+order: 5
+year: 2025
+role: "Data Platform Engineer"
+services: ["Cloud Infrastructure", "Data Engineering", "Automation"]
+---
+
+## The Brief
+
+Healthcare organisations generate large volumes of data from multiple systems — clinical records, monitoring devices, and administrative platforms. The data is rarely in a usable format and almost never in one place.
+
+PulseGrid was built to solve the ingestion, processing, and delivery problem — taking raw healthcare data from multiple sources and producing structured, analytics-ready outputs automatically.
+
+## What We Built
+
+PulseGrid is a cloud-native data engineering platform built on AWS, designed around automated ETL pipelines and DevOps principles.
+
+- **Multi-source ingestion** — connectors for structured and unstructured healthcare data sources
+- **ETL pipelines** — Python-based transformation logic processing data at scale
+- **Kubernetes orchestration** — containerised pipeline jobs with automated scheduling and retry logic
+- **Terraform infrastructure** — all AWS resources provisioned as code, fully reproducible
+- **Structured data outputs** — clean, validated datasets ready for analytics and reporting
+- **Pipeline monitoring** — automated alerting on failures, data quality checks at every stage
+
+## Technical Decisions
+
+**Kubernetes for pipeline orchestration.** Data pipelines need reliable scheduling, retry logic, and resource isolation. Running jobs as containerised Kubernetes workloads gives all three — with horizontal scaling when data volumes spike.
+
+**Python for transformation logic.** Python's data ecosystem (pandas, pydantic, boto3) provides the right tools for healthcare data transformation without heavyweight frameworks.
+
+**Data quality gates at every stage.** Healthcare data errors have real consequences. Validation checks at ingestion, transformation, and output catch problems before they reach downstream systems.
+
+## Results
+
+- Automated end-to-end pipeline from ingestion to analytics-ready output
+- Zero manual data processing steps in the production workflow
+- Scalable architecture handling variable data volumes without intervention
+- Full audit trail on every data transformation for compliance purposes

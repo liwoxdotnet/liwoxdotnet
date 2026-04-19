@@ -1,0 +1,41 @@
+---
+title: "LiwoxDotNet Platform"
+description: "The core LiwoxDotNet digital platform — a production-ready web presence and service delivery system built on modern cloud infrastructure."
+url: "https://liwox.net"
+tags: ["Astro", "Tailwind CSS", "Cloudflare Pages", "DevOps", "APIs"]
+featured: true
+order: 2
+year: 2026
+role: "Founder & Platform Engineer"
+services: ["Web Development", "Cloud Infrastructure", "DevOps"]
+---
+
+## The Brief
+
+LiwoxDotNet needed a digital home that reflected the quality of its engineering work — fast, reliable, and built properly from the ground up. A static template wasn't enough. The site needed server-side functionality, a working contact system, newsletter integration, and a deployment pipeline that could handle updates without friction.
+
+## What We Built
+
+The LiwoxDotNet platform is a full-stack web system deployed on Cloudflare's global edge network. It combines a statically prerendered Astro frontend with serverless API routes for dynamic functionality.
+
+- **Astro 6** with static output and Cloudflare Workers for API routes
+- **Contact form** — validated server-side, delivered via Resend
+- **Newsletter system** — Resend audience integration with honeypot spam protection
+- **CI/CD pipeline** — GitHub → Cloudflare Pages, automated on every push to main
+- **Custom domain** on Cloudflare DNS with zero-downtime deploys
+- **SEO layer** — JSON-LD structured data, sitemap, robots.txt, Open Graph
+
+## Technical Decisions
+
+**Cloudflare Pages over Vercel/Netlify.** Edge deployment, global CDN, and Workers integration in one platform — no vendor lock-in on the frontend, and serverless functions that run at the edge without cold starts.
+
+**Hybrid static + server rendering.** Static pages prerender at build time for maximum performance. API routes stay dynamic on the server. The result is Lighthouse 95+ scores with fully functional server-side features.
+
+**Resend for transactional email.** Simple API, reliable delivery, and built-in audience management for the newsletter — without the overhead of a full email marketing platform.
+
+## Results
+
+- Deployed and live at liwox.net
+- Lighthouse scores of 95+ across all categories
+- Automated deployments on every Git push
+- Contact form and newsletter fully operational in production
