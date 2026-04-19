@@ -11,7 +11,7 @@ export default defineConfig({
     mode: 'directory',
   }),
   site: 'https://liwox.net',
-  output: 'server',
+  
   env: {
     schema: {
       SITE_URL: envField.string({ context: 'server', access: 'public', optional: true }),
