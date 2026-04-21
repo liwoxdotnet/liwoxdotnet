@@ -1,79 +1,147 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+/**
+ * Authors page
+ * URL: /authors
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
+import { Hero } from '@/components/hero';
+import TypingEffect from '@/components/ui/TypingEffect.astro';
+import TechStack from '@/components/landing/TechStack.astro';
+import siteConfig from '@/config/site.config';
+
+const location = siteConfig.address?.city
+  ? `${siteConfig.address.city}${siteConfig.address.country ? `, ${siteConfig.address.country}` : ''}`
+  : 'the UK';
 ---
-
-<Layout
-  title="Authors — LiwoxDotNet"
-  description="Meet the author behind LiwoxDotNet"
+<PageLayout
+  title={`Authors — ${siteConfig.name}`}
+  description="Meet the people behind LiwoxDotNet — the engineers and builders creating scalable digital systems."
 >
-  <section class="container mx-auto px-4 py-24 max-w-3xl">
+  <Hero layout="centered" size="sm">
+    <Badge slot="badge" variant="brand" pill>
+      <Icon name="users" size="sm" />
+      Authors
+    </Badge>
+    <h1 slot="title">
+      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Meet the</span><br />
+      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">
+        builders behind the systems
+      </span>
+    </h1>
 
-    <!-- Header -->
-    <div class="text-center mb-16">
-      <h1 class="text-4xl font-bold mb-4">Authors</h1>
-      <p class="text-muted-foreground text-lg">
-        The mind behind LiwoxDotNet.
-      </p>
-    </div>
+    <p slot="description">
+      LiwoxDotNet is built by engineers focused on real-world systems, cloud platforms, and scalable infrastructure.
+    </p>
+  </Hero>
 
-    <!-- Author Content -->
-    <div class="space-y-6 text-muted-foreground leading-relaxed mb-16">
+  <!-- The Author -->
+  <section class="py-[var(--space-section-md)] bg-brand-500/8 dark:bg-background-secondary">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-12 lg:grid-cols-2">
+        
+        <!-- Left: text -->
+        <div class="flex flex-col gap-4" data-reveal>
+          <div class="flex flex-col gap-6">
+            <Badge variant="brand" pill class="self-start">Author</Badge>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+              Armstrong Uzoagwa
+            </h2>
+          </div>
 
-      <p>
-        LiwoxDotNet is built and maintained by 
-        <a 
-          href="https://armstrong.liwox.net" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          class="inline-block bg-foreground text-background px-3 py-1 rounded-full text-sm font-semibold hover:opacity-90 transition"
-        >
-          Armstrong Uzoagwa
-        </a>, 
-        a DevOps engineer focused on building scalable digital systems and real-world platforms.
-      </p>
-
-      <p>
-        With a strong background in cloud infrastructure, automation, and system design, Armstrong builds solutions that go beyond simple websites — focusing instead on full systems that are reliable, scalable, and production-ready.
-      </p>
-
-      <p>
-        Through LiwoxDotNet, he helps businesses turn ideas into working platforms using modern tools, clean architecture, and efficient deployment strategies.
-      </p>
-
-    </div>
-
-    <!-- Focus Areas -->
-    <div class="border-t pt-16 mb-16">
-      <h2 class="text-2xl font-bold text-center mb-10">Focus Areas</h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-
-        <div>
-          <p class="text-3xl mb-3">⚙️</p>
-          <h3 class="font-semibold mb-2">Systems</h3>
-          <p class="text-muted-foreground text-sm">
-            Designing scalable platforms using modern DevOps and cloud infrastructure.
+          <p class="text-lg text-foreground-muted leading-relaxed">
+            I'm a Site Reliability Engineer and Cloud Platform specialist with 5+ years of hands-on experience building and operating production-grade digital systems. I founded LiwoxDotNet to bring engineering discipline and practical delivery to businesses that need infrastructure they can rely on.
           </p>
+
+          <p class="text-lg text-foreground-muted leading-relaxed">
+            My work spans AWS, GCP, Kubernetes, Terraform, Python automation, and CI/CD pipelines — the full modern DevOps stack. I focus on building systems that are not only functional, but scalable, observable, and production-ready from day one.
+          </p>
+
+          <p class="text-lg text-foreground-muted leading-relaxed">
+            Based in {location}, working with clients across the UK and globally.
+          </p>
+
+          <div class="mt-4">
+            <a 
+              href="https://armstrong.liwox.net/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-block bg-foreground text-background px-4 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition"
+            >
+              View Profile
+            </a>
+          </div>
         </div>
 
-        <div>
-          <p class="text-3xl mb-3">☁️</p>
-          <h3 class="font-semibold mb-2">Cloud</h3>
-          <p class="text-muted-foreground text-sm">
-            Building and deploying reliable cloud-native applications.
-          </p>
-        </div>
+        <!-- Right: stat cards -->
+        <div class="flex flex-col gap-4 h-full" data-reveal data-reveal-delay="1">
+          
+          <Card variant="elevated" hover class="flex-1 flex flex-col justify-center">
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="shield-check" size="md" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-bold tracking-wide text-foreground-muted mb-1">Reliability</p>
+                <h3 class="text-base font-semibold text-foreground">Production-Grade Systems</h3>
+                <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                  Designing and maintaining cloud-native systems with high availability, monitoring, and automated recovery.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <Badge size="sm" variant="brand">Kubernetes</Badge>
+                  <Badge size="sm" variant="brand">Prometheus</Badge>
+                  <Badge size="sm" variant="brand">Grafana</Badge>
+                </div>
+              </div>
+            </div>
+          </Card>
 
-        <div>
-          <p class="text-3xl mb-3">🚀</p>
-          <h3 class="font-semibold mb-2">Execution</h3>
-          <p class="text-muted-foreground text-sm">
-            Turning ideas into real systems that are deployed, tested, and scalable.
-          </p>
-        </div>
+          <Card variant="elevated" hover class="flex-1 flex flex-col justify-center">
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="zap" size="md" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-bold tracking-wide text-foreground-muted mb-1">Automation</p>
+                <h3 class="text-base font-semibold text-foreground">Faster Delivery</h3>
+                <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                  Infrastructure and deployments automated end-to-end using Terraform, CI/CD pipelines, and scripting.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <Badge size="sm" variant="brand">Terraform</Badge>
+                  <Badge size="sm" variant="brand">CI/CD</Badge>
+                  <Badge size="sm" variant="brand">Python</Badge>
+                </div>
+              </div>
+            </div>
+          </Card>
 
+        </div>
       </div>
     </div>
-
   </section>
-</Layout>
+
+  <!-- CTA -->
+  <section class="py-[var(--space-section-md)] bg-background">
+    <div class="mx-auto max-w-2xl px-6 text-center" data-reveal>
+      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
+        Want to work together?
+      </h2>
+      <p class="text-lg text-foreground-muted mb-8 text-balance">
+        If you're building something and need the right technical foundation, let's talk.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button size="lg" href="/contact">
+          Start a Project
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+        <Button size="lg" variant="outline" href="/blog">
+          Read the Blog
+        </Button>
+      </div>
+    </div>
+  </section>
+</PageLayout>
