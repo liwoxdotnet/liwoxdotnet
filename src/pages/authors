@@ -1,0 +1,79 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout
+  title="Authors — LiwoxDotNet"
+  description="Meet the author behind LiwoxDotNet"
+>
+  <section class="container mx-auto px-4 py-24 max-w-3xl">
+
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h1 class="text-4xl font-bold mb-4">Authors</h1>
+      <p class="text-muted-foreground text-lg">
+        The mind behind LiwoxDotNet.
+      </p>
+    </div>
+
+    <!-- Author Content -->
+    <div class="space-y-6 text-muted-foreground leading-relaxed mb-16">
+
+      <p>
+        LiwoxDotNet is built and maintained by 
+        <a 
+          href="https://armstrong.liwox.net" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-block bg-foreground text-background px-3 py-1 rounded-full text-sm font-semibold hover:opacity-90 transition"
+        >
+          Armstrong Uzoagwa
+        </a>, 
+        a DevOps engineer focused on building scalable digital systems and real-world platforms.
+      </p>
+
+      <p>
+        With a strong background in cloud infrastructure, automation, and system design, Armstrong builds solutions that go beyond simple websites — focusing instead on full systems that are reliable, scalable, and production-ready.
+      </p>
+
+      <p>
+        Through LiwoxDotNet, he helps businesses turn ideas into working platforms using modern tools, clean architecture, and efficient deployment strategies.
+      </p>
+
+    </div>
+
+    <!-- Focus Areas -->
+    <div class="border-t pt-16 mb-16">
+      <h2 class="text-2xl font-bold text-center mb-10">Focus Areas</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+
+        <div>
+          <p class="text-3xl mb-3">⚙️</p>
+          <h3 class="font-semibold mb-2">Systems</h3>
+          <p class="text-muted-foreground text-sm">
+            Designing scalable platforms using modern DevOps and cloud infrastructure.
+          </p>
+        </div>
+
+        <div>
+          <p class="text-3xl mb-3">☁️</p>
+          <h3 class="font-semibold mb-2">Cloud</h3>
+          <p class="text-muted-foreground text-sm">
+            Building and deploying reliable cloud-native applications.
+          </p>
+        </div>
+
+        <div>
+          <p class="text-3xl mb-3">🚀</p>
+          <h3 class="font-semibold mb-2">Execution</h3>
+          <p class="text-muted-foreground text-sm">
+            Turning ideas into real systems that are deployed, tested, and scalable.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+</Layout>
